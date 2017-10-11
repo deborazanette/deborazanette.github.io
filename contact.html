@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ebs and Debs</title>
+    <meta charset=”UTF-8”/>
+    <link href="../styles/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header>
+        <h1> EBS & DEBS</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="playlists.html">Playlists</a></li>
+            <li><a href="#">Contact us</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+
+        <div class="col-1">
+            <h3>Contact Ebs</h3>
+            <fieldset>
+                <legend>How to contact</legend>
+                <form action="#" method="post">
+                    <p>
+                        <label for="write name">What's your name?</label><br />
+                        <input type="text" name="name" id="write name" size="40" maxlength="20" required/>
+                    </p>
+
+                    <p>
+                        <label for="beskrivning">Why do you want to contact us?</label><br/>
+                        <textarea name="omärende" id="describe why" required rows="8" cols="40"></textarea>
+                    </p>
+
+                    <fieldset class="inside">
+                        <legend>Choose your favorite drink:</legend><br/>
+                        <input type="radio" name="list" value="gt" id="gt" />
+                        <label for="gt">Gin Tonic</label>
+                        <input type="radio" name="list" value="rb" id="rb" />
+                        <label for="rb">Redbull Vodka</label>
+                        <input type="radio" name="list" value="other" id="other" />
+                        <label for="other">Other</label>
+                    </fieldset>
+
+                    <p>
+                        <label for="myEmail">E-mail:</label> <input type="email" name="myEmail" id="myEmail" pattern="\S+@\S+\.\S+"
+                            placeholder="name@gmail.com" />
+                        <br/><br/>
+                        <label for="phone">Phone:</label> <input type="text" name="phone" id="phone" />
+                    </p>
+
+                    <p>
+                        <button class="send" type="submit" value="Send">Send</button>
+                        <button class="reset" type="reset" value="Reset">Reset</button>
+                    </p>
+
+                </form>
+            </fieldset>
+
+        </div>
+
+        <div class="col-2">
+            <h3>Contact Debs</h3>
+            <fieldset>
+                <legend>How to contact</legend>
+                <form action="#" method="post">
+                    <p>
+                        <label for="write name">What's your name?</label><br />
+                        <input type="text" name="name" id="write name" size="40" maxlength="20" required/>
+                    </p>
+
+                    <p>
+                        <label for="beskrivning">Why do you want to contact us?</label><br/>
+                        <textarea name="omärende" id="describe why" required rows="8" cols="40"></textarea>
+                    </p>
+
+                    <fieldset class="inside">
+                        <legend>Choose your favorite drink:</legend><br/>
+                        <input type="radio" name="list" value="gt" id="gt" />
+                        <label for="gt">Gin Tonic</label>
+                        <input type="radio" name="list" value="rb" id="rb" />
+                        <label for="rb">Redbull Vodka</label>
+                        <input type="radio" name="list" value="other" id="other" />
+                        <label for="other">Other</label>
+                    </fieldset>
+
+                    <p>
+                        <label for="myEmail">E-mail:</label> <input type="email" name="myEmail" id="myEmail" pattern="\S+@\S+\.\S+"
+                            placeholder="name@gmail.com" />
+                        <br/><br/>
+                        <label for="phone">Phone:</label> <input type="text" name="phone" id="phone" />
+                    </p>
+
+                    <p>
+                        <button class="send" type="submit" value="Send">Send</button>
+                        <button class="reset" type="reset" value="Reset">Reset</button>
+                    </p>
+
+                </form>
+            </fieldset>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Follow us on social media!</p>
+    </footer>
+
+</body>
+
+</html>
