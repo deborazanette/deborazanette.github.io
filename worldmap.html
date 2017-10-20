@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<title>ABROAD
+        <link href="https://fonts.googleapis.com/css?family=Pathway+Gothic+One|Source+Sans+Pro:400" rel="stylesheet">
+</title>
+
+<head>
+  <div class="header">
+    <h1 class="title">Citizen of the World, 23</h1>
+    <p class="intro">Follow me around the world, <b>if you dare.</b></p>
+    <h2> Places I Call Home:</h2>
+    <div class="dropdown">
+      <button class="dropbtn">+</button>
+      <div class="dropdown-content">
+        <a href="index.html">Home</a>
+        <a href="#">What is Home?</a>
+        <a href="#">Experiences</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+   </div>
+</head>
+
+<style type="text/css">
+  .header{
+  background-color: #0a3542;
+  padding-bottom: 1px;
+  margin-bottom: 0;
+}
+
+.title{
+  text-align: center;
+  color: #fff;
+  font-size: 55px;
+  margin: 0;
+  background-color: #0a3542;
+  padding: 0;
+  margin-bottom: 0;
+  margin-left: 5px;
+  padding-top: 1em;
+}
+
+.intro{
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #fff;
+  padding-bottom: 1em;
+  font-size: 18px;
+  padding-top: 0;
+  
+}
+
+h2{
+  color: #fff;
+  padding-left: 10px;
+  padding-bottom: 0;
+  font-size: 25px;
+}
+
+/* DROPDOWN*/
+
+/* Dropdown Button*/
+.dropbtn {
+    background-color:#72a6b5;
+    color: #fff;
+    padding: 16px;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-family: 'Source Sans Pro';
+}
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 60px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    text-align: left;
+    font-family: 'Pathway Gothic One',Helvetica Neue,Helvetica,Arial,sans-serif;
+    
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #4b9aab;
+  color: #fff;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #0a3542;
+    color: white;
+}
+
+
+
+</style>
+
+
+<!--Set up the CSS styles-->
+<style type="text/css">
+
+    html { 
+	      height: 100%;
+	  }
+      
+	  body {
+		  height: 100%; 
+		  margin: 8px; 
+		  padding: 0;
+		  
+	  }
+
+    h1{
+      text-align: left;
+      color: #fff;
+      font-size: 35px;
+      font-family: 'Source Sans Pro';
+      background-color: #0a3542;
+      margin: 0;
+      margin-bottom: 0;
+      justify-content: space-around;
+      
+
+    }
+      
+	  /*Adapt the following styling depending on where you want to put your map. If you want a 'full screen' map, then set the width and height to 100 percent and remove the margins.*/
+	  #festival-map { 
+	  	height: 65%;
+		  width: 100%; 
+		  margin-left: 0;
+      margin-right: 0;
+		  border-right-width: 0;
+		  border-right-color: #ffffff;
+		  border-right-style: solid;
+		  border-left-width: 0;
+		  border-left-color: #ffffff;
+		  border-left-style: solid;
+	  }
+	  
+	  .pop_up_box_text {
+	 	  font-family: Georgia, 'Times New Roman', Times, serif; 
+	 	  font-size: 16px; 
+		  line-height: 22px; 
+	 	  color: #ffffff; 
+	 	  display: inline; 
+	  }
+
+</style>
+
+
+
+<!--Connect to the google maps api using your api key-->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATAJwPeJ6RaJjWQ1XoABixbhyfJwbwdRA&sensor=true"></script>
+
+<!--Connect to the infobox javascript library. This is used later to create the pop-up windows -->
+<script src="infobox/infobox.js" type="text/javascript"></script>
+
+<!--Main chunk of javascript that creates and controls the map.-->
+<script type="text/javascript">
+
+//Set up the custom styles for the map. I've created two styles so the map can switch between them depending on the zoom level. i.e. there is far less detail when the map is zoomed out.
+//First, we read in the data describing style.
+var style_festival = [
+  {
+    "featureType": "administrative",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "poi",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "transit",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "road",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "landscape",
+    "stylers": [
+      { "color": "#124d5a" }
+    ]
+  },{
+    "featureType": "water",
+    "stylers": [
+      { "visibility": "on" },
+      { "color": "#a5ccd5" }
+    ]
+  }
+];
+
+var style_festival_zoomed = [
+  {
+    "featureType": "administrative",
+    "stylers": [
+      { "visibility": "on" }
+    ]
+  },{
+    "featureType": "poi",
+    "stylers": [
+      { "visibility": "on" }
+    ]
+  },{
+    "featureType": "transit",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "road",
+    "stylers": [
+      { "visibility": "on" }
+    ]
+  },{
+    "featureType": "landscape",
+    "stylers": [
+      { "color": "#124d5a" }
+    ]
+  },{
+    "featureType": "water",
+    "stylers": [
+      { "visibility": "on" },
+      { "color": "#a5ccd5" }
+    ]
+  },   {
+    "featureType": "poi.park",
+	"elementType": "geometry",
+    "stylers": [
+      { "color": "#186778" }
+    ]
+  }
+];
+
+//Then we use this data to create the styles. 
+var styled_festival = new google.maps.StyledMapType(style_festival, {name: "Festival style"});
+var styled_festival_zoomed = new google.maps.StyledMapType(style_festival_zoomed, {name: "Festival style zoomed"});
+
+//Create the variables that will be used within the map configuration options.
+//The latitude and longitude of the center of the map.
+var festivalMapCenter = new google.maps.LatLng(29.142566, -42.187500);
+//The degree to which the map is zoomed in. This can range from 0 (least zoomed) to 21 and above (most zoomed).
+var festivalMapZoom = 2;
+var festivalMapZoomMax = 10;
+var festivalMapZoomMin = 2;
+
+//These options configure the setup of the map. 
+var festivalMapOptions = { 
+		  center: festivalMapCenter, 
+          zoom: festivalMapZoom,
+		  maxZoom:festivalMapZoomMax,
+		  minZoom:festivalMapZoomMin,
+		  panControl: false,
+		  mapTypeControl: false,
+		   mapTypeControlOptions: {
+     		mapTypeIds: [ 'map_styles_festival', 'map_styles_festival_zoomed']
+   		 }
+};
+
+//Create the variable for the main map itself.
+var festivalMap;
+
+//Create control panel (ie. site title and 2 buttons) which appears on the right-hand side.
+var controlPanelDiv = document.createElement('div');
+var festivalMapControlPanel = new createControlPanel(controlPanelDiv, festivalMap);
+
+//Create the reset map button.
+var resetButtonDiv = document.createElement('div');
+var festivalMapResetButton = new createResetButton(resetButtonDiv, festivalMap);
+
+//Variable containing the style for the pop-up infobox.
+var pop_up_info = "border: 0px solid black; background-color: #ffffff; padding:15px; margin-top: 8px; border-radius:10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; box-shadow: 1px 1px #888;";
+
+
+//When the page loads, the line below calls the function below called 'loadFestivalMap' to load up the map.
+google.maps.event.addDomListener(window, 'load', loadFestivalMap);
+
+
+//THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS--------------------------------------------------------------------------------
+function loadFestivalMap() {
+	
+//The variable to hold the map was created above.The line below creates the map, assigning it to this variable. The line below also loads the map into the div with the id 'festival-map' (see code within the 'body' tags below), and applies the 'festivalMapOptions' (above) to configure this map. 
+festivalMap = new google.maps.Map(document.getElementById("festival-map"), festivalMapOptions);	
+
+//Assigning the two map styles defined above to the map.
+festivalMap.mapTypes.set('map_styles_festival', styled_festival);
+festivalMap.mapTypes.set('map_styles_festival_zoomed', styled_festival_zoomed);
+//Setting the one of the styles to display as default as the map loads.
+festivalMap.setMapTypeId('map_styles_festival');
+
+
+//Continuously listens out for when the zoom level changes. This includs when the map zooms when a marker is clicked.
+google.maps.event.addListener(festivalMap, "zoom_changed", function() {
+	var newZoom = festivalMap.getZoom();
+	//If the map is zoomed in, the switch to the style that shows the higher level of detail.
+	if (newZoom > 6){
+		festivalMap.setMapTypeId('map_styles_festival_zoomed');
+			}
+	//Otherwise the map must be zoomed out, so use the style with the lower level of detail.
+	else {
+		festivalMap.setMapTypeId('map_styles_festival');
+	}
+
+});
+
+
+//Add the control panel and reset button (created previously) to the map.
+festivalMap.controls[google.maps.ControlPosition.RIGHT_TOP].push(controlPanelDiv);
+festivalMap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(resetButtonDiv);
+
+//Calls the function below to load up all the map markers.
+loadMapMarkers();
+
+}
+
+
+
+//Function that loads the map markers and the pop-up info boxes.
+function loadMapMarkers (){
+
+//PORTO ALEGRE, BR -----------------
+
+//Setting the position of the Porto map marker.
+var markerPositionPorto = new google.maps.LatLng(-30.034647, -51.217658);
+
+//Setting the icon to be used with the Porto map marker.
+var markerIconPorto = {
+  url: 'icons/icon_porto.png',
+  //The size image file.
+  size: new google.maps.Size(130, 130),
+  //The point on the image to measure the anchor from. 0, 0 is the top left.
+  origin: new google.maps.Point(0, 0),
+  //The x y coordinates of the anchor point on the marker. e.g. If your map marker was a drawing pin then the anchor would be the tip of the pin.
+  anchor: new google.maps.Point(60, 30)
+};
+
+//Setting the shape to be used with the Porto map marker.
+var markerShapePorto = {
+      coord: [12,4,216,22,212,74,157,70,184,111,125,67,6,56],
+      type: 'poly'
+};
+
+//Creating the Porto map marker.
+markerPorto = new google.maps.Marker({
+      //uses the position set above.
+	  position: markerPositionPorto,
+	  //adds the marker to the map.
+      map: festivalMap,
+      title: 'Porto Alegre, Brasil',
+	  //assigns the icon image set above to the marker.
+	  icon: markerIconPorto,
+	  //assigns the icon shape set above to the marker.
+	  shape: markerShapePorto,
+	  //sets the z-index of the map marker.
+	  zIndex:107
+});
+
+//Creates the information to go in the pop-up info box.
+var boxTextPorto = document.createElement("div");
+boxTextPorto.style.cssText = pop_up_info;
+boxTextPorto.innerHTML = '<p class="pop_up_box_tex_portot">Porto Alegre is where I am originally from. It is the capital of the state called Rio Grande do Sul and it is popular for its amazing barbecue, called Churrasco. I lived here until I was 6, but I still visit here ocasionally to see the rest of the family.</span>';
+
+//Sets up the configuration options of the pop-up info box.                
+var infoboxOptionsPorto = {
+                 content: boxTextPorto
+                ,disableAutoPan: false
+                ,maxWidth: 0
+                ,pixelOffset: new google.maps.Size(-250, 65)
+                ,zIndex: null
+                ,boxStyle: { 
+                  background: "url('infobox/pop_up_box_top_arrow.png') no-repeat"
+                  ,opacity: 1
+                  ,width: "430px"
+                 }
+                ,closeBoxMargin: "10px 2px 2px 2px"
+                ,closeBoxURL: "icons/button_close.png"
+                ,closeBoxContent: "hello there!"
+                ,infoBoxClearance: new google.maps.Size(1, 1)
+                ,isHidden: false
+                ,pane: "floatPane"
+                ,enableEventPropagation: false
+
+};
+
+//Creates the pop-up infobox for Porto, adding the configuration options set above.
+infoboxPorto = new InfoBox(infoboxOptionsPorto);
+
+//Add an 'event listener' to the Porto map marker to listen out for when it is clicked.
+google.maps.event.addListener(markerPorto, "click", function (e) {
+			//Open the Porto info box.
+			infoboxPorto.open(festivalMap, this);
+			//Changes the z-index property of the marker to make the marker appear on top of other markers.
+			this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+			//Zooms the map.
+			setZoomWhenMarkerClicked();
+			//Sets the Glastonbury marker to be the center of the map. 
+			festivalMap.setCenter(markerPorto.getPosition());
+});
+
+
+//CASCAIS-----------
+
+var markerPositionCascais = new google.maps.LatLng(38.696757, -9.420744);
+
+var markerIconCascais = {
+  url: 'icons/icon_cascais.png',
+  size: new google.maps.Size(198, 108),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(70, 55)
+};
+
+var markerShapeCascais = {
+      coord: [6,30,180,4,192,70,103,82,105,105,82,85,15,93],
+      type: 'poly'
+};
+
+markerCascais = new google.maps.Marker({
+	  position: markerPositionCascais,
+      map: festivalMap,
+      title: 'Cascais, Portugal',
+	  icon: markerIconCascais,
+	  shape: markerShapeCascais,
+	  zIndex:108
+});
+
+var boxTextCascais = document.createElement("div");
+boxTextCascais.style.cssText = pop_up_info;
+boxTextCascais.innerHTML = '<p class="pop_up_box_tex_portot">Me and my family moved to Cascais back in 1999 because of my mom&#8217s job. We ended up living here for 4 years and loved each second of it. After all, who doesn&#8217t love living 10 minutes from the beach? (August 1999)</span>';
+               
+var infoboxOptionsCascais = {
+                 content: boxTextCascais
+                ,disableAutoPan: false
+                ,maxWidth: 0
+                ,pixelOffset: new google.maps.Size(-150, 30)
+                ,zIndex: null
+                ,boxStyle: { 
+                  background: "url('infobox/pop_up_box_top_arrow.png') no-repeat"
+                  ,opacity: 1
+                  ,width: "430px"
+                 }
+                ,closeBoxMargin: "10px 2px 2px 2px"
+                ,closeBoxURL: "icons/button_close.png"
+                ,closeBoxContent: "hello there!"
+                ,infoBoxClearance: new google.maps.Size(1, 1)
+                ,isHidden: false
+                ,pane: "floatPane"
+                ,enableEventPropagation: false
+
+};
+
+infoboxCascais = new InfoBox(infoboxOptionsCascais);
+
+google.maps.event.addListener(markerCascais, "click", function (e) {
+      infoboxCascais.open(festivalMap, this);
+      this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+      setZoomWhenMarkerClicked(); 
+      festivalMap.setCenter(markerCascais.getPosition());
+});
+
+//NAPA VALLEY ------------
+
+var markerPositionNapa = new google.maps.LatLng(38.502469, -122.265389);
+
+var markerIconNapa = {
+  url: 'icons/icon_napa.png',
+  size: new google.maps.Size(230, 151),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(100, 50)
+};
+
+var markerShapeNapa = {
+      coord: [18,8,208,28,200,113,162,110,190,145,128,109,6,93],
+      type: 'poly'
+};
+
+markerNapa = new google.maps.Marker({
+	  position: markerPositionNapa,
+      map: festivalMap,
+      title: 'Napa Valley, US',
+	  icon: markerIconNapa,
+	  shape: markerShapeNapa,
+	  zIndex:103
+});
+
+var boxTextNapa = document.createElement("div");
+boxTextNapa.style.cssText = pop_up_info;
+boxTextNapa.innerHTML = '<p class="pop_up_box_tex_portot">From 2009 and 2010 I did an exchange program in Napa Valley. I lived with an amazing hostfamily that became my second family. They made the days in America even more special. (August 2009)</span>';
+               
+var infoboxOptionsNapa = {
+                 content: boxTextNapa
+                ,disableAutoPan: false
+                ,maxWidth: 0
+                ,pixelOffset: new google.maps.Size(-300, 40)
+                ,zIndex: null
+                ,boxStyle: { 
+                  background: "url('infobox/pop_up_box_top_arrow.png') no-repeat"
+                  ,opacity: 1
+                  ,width: "430px"
+                 }
+                ,closeBoxMargin: "10px 2px 2px 2px"
+                ,closeBoxURL: "icons/button_close.png"
+                ,closeBoxContent: "hello there!"
+                ,infoBoxClearance: new google.maps.Size(1, 1)
+                ,isHidden: false
+                ,pane: "floatPane"
+                ,enableEventPropagation: false
+
+};
+
+infoboxNapa = new InfoBox(infoboxOptionsNapa);
+
+google.maps.event.addListener(markerNapa, "click", function (e) {
+      infoboxNapa.open(festivalMap, this);
+      setZoomWhenMarkerClicked();
+      festivalMap.setCenter(markerNapa.getPosition());
+});
+
+
+//MEXICO -------------
+var markerPositionMexico = new google.maps.LatLng(20.588793, -100.389888);
+
+var markerIconMexico = {
+  url: 'icons/icon_mx.png',
+  size: new google.maps.Size(230, 114),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(09, 89)
+};
+
+var markerShapeMexico = {
+      coord: [8,54,177,7,189,49,65,88,44,110,47,91,20,98],
+      type: 'poly'
+};
+
+markerMexico = new google.maps.Marker({
+	  position: markerPositionMexico,
+      map: festivalMap,
+      title: 'Queretaro, Mexico',
+	  icon: markerIconMexico,
+	  shape: markerShapeMexico,
+	  zIndex:106
+});
+
+var boxTextMexico = document.createElement("div");
+boxTextMexico.style.cssText = pop_up_info;
+boxTextMexico.innerHTML = '<p class="pop_up_box_tex_portot">After 2 years being at University, I decided to come spend 7 months in Queretaro Mexico to work as a Brand Assistant for M&M&#8217s and Milky Way. Can&#8217t describe how much I fell in love with mexicans and all their culture. (January 2014)</span>';
+                
+var infoboxOptionsMexico = {
+                 content: boxTextMexico
+                ,disableAutoPan: false
+                ,maxWidth: 0
+                ,pixelOffset: new google.maps.Size(-200, 10)
+                ,zIndex: null
+                ,boxStyle: { 
+                  background: "url('infobox/pop_up_box_top_arrow.png') no-repeat"
+                  ,opacity: 1
+                  ,width: "430px"
+                 }
+                ,closeBoxMargin: "10px 2px 2px 2px"
+                ,closeBoxURL: "icons/button_close.png"
+                ,closeBoxContent: "hello there!"
+                ,infoBoxClearance: new google.maps.Size(1, 1)
+                ,isHidden: false
+                ,pane: "floatPane"
+                ,enableEventPropagation: false
+
+};
+
+
+infoboxMexico = new InfoBox(infoboxOptionsMexico);
+
+google.maps.event.addListener(markerMexico, "click", function (e) {
+      infoboxMexico.open(festivalMap, this);
+      this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+      setZoomWhenMarkerClicked();
+      festivalMap.setCenter(markerMexico.getPosition());
+});
+
+
+//ITALY -------------
+var markerPositionItaly = new google.maps.LatLng(43.769560, 11.255814);
+
+var markerIconItaly = {
+  url: 'icons/icon_it.png',
+  size: new google.maps.Size(192, 128),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(0, 85)
+};
+
+var markerShapeItaly = {
+      coord: [8,8,184,10,182,70,111,70,82,122,87,71,9,71],
+      type: 'poly'
+};
+
+markerItaly = new google.maps.Marker({
+	  position: markerPositionItaly,
+      map: festivalMap,
+      title: 'Florence, Italy',
+	  icon: markerIconItaly,
+	  shape: markerShapeItaly,
+	  zIndex:105
+});
+
+var boxTextItaly = document.createElement("div");
+boxTextItaly.style.cssText = pop_up_info;
+boxTextItaly.innerHTML = '<p class="pop_up_box_tex_portot">During my break from university and after 7 months in Mexico, I moved here to do a 5 month course in Fashion Marketing and Communication. (September 2014)</span>';
+               
+var infoboxOptionsItaly = {
+                 content: boxTextItaly
+                ,disableAutoPan: false
+                ,maxWidth: 0
+                ,pixelOffset: new google.maps.Size(-200, 10)
+                ,zIndex: null
+                ,boxStyle: { 
+                  background: "url('infobox/pop_up_box_top_arrow.png') no-repeat"
+                  ,opacity: 1
+                  ,width: "430px"
+                 }
+                ,closeBoxMargin: "10px 2px 2px 2px"
+                ,closeBoxURL: "icons/button_close.png"
+                ,closeBoxContent: "hello there!"
+                ,infoBoxClearance: new google.maps.Size(1, 1)
+                ,isHidden: false
+                ,pane: "floatPane"
+                ,enableEventPropagation: false
+
+};
+
+infoboxItaly = new InfoBox(infoboxOptionsItaly);
+
+google.maps.event.addListener(markerItaly, "click", function (e) {
+      infoboxItaly.open(festivalMap, this);
+      this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+      setZoomWhenMarkerClicked();
+      festivalMap.setCenter(markerItaly.getPosition());
+});
+
+
+//MUNICH ------------
+var markerPositionMunich = new google.maps.LatLng(48.135125, 11.58198);
+
+var markerIconMunich = {
+  url: 'icons/icon_mun.png',
+  size: new google.maps.Size(100, 138),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(100, 80)
+};
+
+var markerShapeMunich= {
+      coord: [8,8,184,10,182,70,111,70,82,122,87,71,9,71],
+      type: 'poly'
+};
+
+markerMunich = new google.maps.Marker({
+	  position: markerPositionMunich,
+      map: festivalMap,
+      title: 'Munich, Germany',
+	  icon: markerIconMunich,
+	  shape: markerShapeMunich,
+	  zIndex:104
+});
+
+var boxTextMunich = document.createElement("div");
+boxTextMunich.style.cssText = pop_up_info;
+boxTextMunich.innerHTML = '<p class="pop_up_box_tex_portot">After I graduated and got my Bachelor degree I decided to go to Hyper Island do a post graduation course, but before it started I came to live with my parents in Munich for 4 months. (March 2017)</span>';
+             
+var infoboxOptionsMunich = {
+                 content: boxTextMunich
+                ,disableAutoPan: false
+                ,maxWidth: 0
+                ,pixelOffset: new google.maps.Size(-200, 10)
+                ,zIndex: null
+                ,boxStyle: { 
+                  background: "url('infobox/pop_up_box_top_arrow.png') no-repeat"
+                  ,opacity: 1
+                  ,width: "430px"
+                 }
+                ,closeBoxMargin: "10px 2px 2px 2px"
+                ,closeBoxURL: "icons/button_close.png"
+                ,closeBoxContent: "hello there!"
+                ,infoBoxClearance: new google.maps.Size(1, 1)
+                ,isHidden: false
+                ,pane: "floatPane"
+                ,enableEventPropagation: false
+
+};
+
+infoboxMunich = new InfoBox(infoboxOptionsMunich);
+
+google.maps.event.addListener(markerMunich, "click", function (e) {
+      infoboxMunich.open(festivalMap, this);
+      this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+      setZoomWhenMarkerClicked();
+      festivalMap.setCenter(markerMunich.getPosition());
+});
+
+
+//SWEDEN ------------
+var markerPositionSweden = new google.maps.LatLng(59.329323, 18.068581);
+
+var markerIconSweden = {
+  url: 'icons/icon_se.png',
+  size: new google.maps.Size(173, 110),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(31, 108)
+};
+
+var markerShapeSweden = {
+      coord: [17,6,168,27,157,105,53,91,32,105,26,86,7,83],
+      type: 'poly'
+};
+
+markerSweden = new google.maps.Marker({
+	  position: markerPositionSweden,
+      map: festivalMap,
+      title: 'Stockholm, Sweden',
+	  icon: markerIconSweden,
+	  shape: markerShapeSweden,
+	  zIndex:101
+});
+
+var boxTextSweden = document.createElement("div");
+boxTextSweden.style.cssText = pop_up_info;
+boxTextSweden.innerHTML = '<p class="pop_up_box_tex_portot">This where I am now. Living in cold but amazing Stockholm doing a Digital Data Strategy course in Hyper Island. I am loving this experience!</span>';
+              
+var infoboxOptionsSweden = {
+                 content: boxTextSweden
+                ,disableAutoPan: false
+                ,maxWidth: 0
+                ,pixelOffset: new google.maps.Size(-200, 10)
+                ,zIndex: null
+                ,boxStyle: { 
+                  background: "url('infobox/pop_up_box_top_arrow.png') no-repeat"
+                  ,opacity: 1
+                  ,width: "430px"
+                 }
+                ,closeBoxMargin: "10px 2px 2px 2px"
+                ,closeBoxURL: "icons/button_close.png"
+                ,closeBoxContent: "hello there!"
+                ,infoBoxClearance: new google.maps.Size(1, 1)
+                ,isHidden: false
+                ,pane: "floatPane"
+                ,enableEventPropagation: false
+
+};
+
+infoboxSweden = new InfoBox(infoboxOptionsSweden);
+
+google.maps.event.addListener(markerSweden, "click", function (e) {
+      infoboxSweden.open(festivalMap, this);
+      this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+      setZoomWhenMarkerClicked();
+      festivalMap.setCenter(markerSweden.getPosition());
+});
+
+//SAO JOSE DOS CAMPOS -------------
+var markerPositionSanja = new google.maps.LatLng(-23.223701, -45.900907);
+
+var markerIconSanja = {
+  url: 'icons/icon_sanja.png',
+  size: new google.maps.Size(214, 100),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(120, 70)
+};
+
+var markerShapeSanja = {
+      coord: [10,7,205,7,205,57,183,57,183,76,164,58,8,58],
+      type: 'poly'
+};
+
+markerSanja = new google.maps.Marker({
+	  position: markerPositionSanja,
+      map: festivalMap,
+      title: 'São José dos Campos, Brasil',
+	  icon: markerIconSanja,
+	  shape: markerShapeSanja,
+	  zIndex:100
+});
+
+var boxTextSanja = document.createElement("div");
+boxTextSanja.style.cssText = pop_up_info;
+boxTextSanja.innerHTML = '<p class="pop_up_box_tex_portot">After Portugal this is where my family moved to. This is the place I consider myself from whenever someone asks me "where are you from?". For the ones that have never been, Sanja is a small city full of crazy cool people. [2004]</span>';
+                
+var infoboxOptionsSanja = {
+                 content: boxTextSanja
+                ,disableAutoPan: false
+                ,maxWidth: 0
+                ,pixelOffset: new google.maps.Size(-200, 10)
+                ,zIndex: null
+                ,boxStyle: { 
+                  background: "url('infobox/pop_up_box_top_arrow.png') no-repeat"
+                  ,opacity: 1
+                  ,width: "430px"
+                 }
+                ,closeBoxMargin: "10px 2px 2px 2px"
+                ,closeBoxURL: "icons/button_close.png"
+                ,closeBoxContent: "hello there!"
+                ,infoBoxClearance: new google.maps.Size(1, 1)
+                ,isHidden: false
+                ,pane: "floatPane"
+                ,enableEventPropagation: false
+
+};
+
+infoboxSanja = new InfoBox(infoboxOptionsSanja);
+
+google.maps.event.addListener(markerSanja, "click", function (e) {
+      infoboxSanja.open(festivalMap, this);
+      this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+      setZoomWhenMarkerClicked(); 
+      festivalMap.setCenter(markerSanja.getPosition());
+});
+
+
+
+//SÃO PAULO -----------
+var markerPositionSp = new google.maps.LatLng(-23.550520, -46.633309);
+
+var markerIconSp = {
+  url: 'icons/icon_sp.png',
+  size: new google.maps.Size(222, 102),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(40, 102)
+};
+
+var markerShapeSp = {
+      coord: [7,47,206,6,210,55,140,68,147,98,120,75,17,94],
+      type: 'poly'
+};
+
+markerSp = new google.maps.Marker({
+	  position: markerPositionSp,
+      map: festivalMap,
+      title: 'São Paulo, Brasil',
+	  icon: markerIconSp,
+	  shape: markerShapeSp,
+	  zIndex:102
+});
+
+var boxTextSp = document.createElement("div");
+boxTextSp.style.cssText = pop_up_info;
+boxTextSp.innerHTML = '<p class="pop_up_box_tex_portot">Moved to São Paulo in 2012 for my bachelor degree. I lived here during the four years studying Marketing and Advertising at ESPM. [If you are a little confused I took 2014 off to travel, so I graduated only in 2016]</span>';
+               
+var infoboxOptionsSp = {
+                 content: boxTextSp
+                ,disableAutoPan: false
+                ,maxWidth: 0
+                ,pixelOffset: new google.maps.Size(-200, 10)
+                ,zIndex: null
+                ,boxStyle: { 
+                  background: "url('infobox/pop_up_box_top_arrow.png') no-repeat"
+                  ,opacity: 1
+                  ,width: "430px"
+                 }
+                ,closeBoxMargin: "10px 2px 2px 2px"
+                ,closeBoxURL: "icons/button_close.png"
+                ,closeBoxContent: "hello there!"
+                ,infoBoxClearance: new google.maps.Size(1, 1)
+                ,isHidden: false
+                ,pane: "floatPane"
+                ,enableEventPropagation: false
+
+};
+
+infoboxSp = new InfoBox(infoboxOptionsSp);
+
+google.maps.event.addListener(markerSp, "click", function (e) {
+      infoboxSp.open(festivalMap, this);
+      this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+      setZoomWhenMarkerClicked(); 
+      festivalMap.setCenter(markerSp.getPosition());
+});
+
+
+}
+
+
+//Function that zooms the map in (if has not been zoomed already) when a map marker is clicked.
+function setZoomWhenMarkerClicked(){
+var currentZoom = festivalMap.getZoom();
+	if (currentZoom < 7){
+			festivalMap.setZoom(7);
+	}
+}
+
+//Function that resets the z-indexes back to their orignal values.
+function resetZindexes (){
+	markerSanja.setZIndex(100);
+	markerSweden.setZIndex(101);
+	markerSp.setZIndex(102);
+	markerNapa.setZIndex(103);	
+	markerMunich.setZIndex(104);
+	markerItaly.setZIndex(105);
+	markerMexico.setZIndex(106);
+	markerPorto.setZIndex(107);
+	markerCascais.setZIndex(108);
+}
+
+//Function that creates the control panel area, ie. the map title and the 2 buttons just beneath it.
+function createControlPanel (controlPanelDiv){
+   controlPanelDiv.style.padding = '0px';  
+   controlUI = document.createElement('div');
+   controlUI.style.border='0px solid white';
+   controlUI.style.margin='10px';
+   controlUI.style.paddingTop='11px';
+   controlUI.style.paddingBottom='5px';
+   controlUI.style.paddingLeft='0px';
+   controlUI.style.paddingRight='0px';
+   controlUI.style.width='245px';
+   controlUI.style.height='419px';
+   controlPanelDiv.appendChild(controlUI);
+  
+}
+
+
+//Function that creates the 'Reser map' button.
+function createResetButton (resetButtonDiv){
+  resetButtonDiv.style.padding = '0px';  
+  controlUI2 = document.createElement('div');
+  controlUI2.style.backgroundColor = '#ffffff';
+  controlUI2.style.borderRadius='5px';
+  controlUI2.style.margin='10px';
+  controlUI2.style.paddingTop='2px';
+  controlUI2.style.paddingBottom='2px';
+  controlUI2.style.paddingLeft='2px';
+  controlUI2.style.paddingRight='5px';
+  controlUI2.style.textAlign='center';
+  controlUI2.style.width='148px';
+  controlUI2.style.height='31px';
+  controlUI2.innerHTML = '<div onClick="handelRequests(\'reset\')" OnMouseOver="this.style.cursor=\'pointer\';" OnMouseOut="this.style.cursor=\'default\';" ><img src="icons/button_reset.png" width="148" height="31" border="0"/></div>';
+  resetButtonDiv.appendChild(controlUI2);
+}
+
+//Function that is called when either the 'smaller events', unbrella or the 'reset map' buttons are clicked.
+function handelRequests (buttonPressed) {
+if (buttonPressed === "reset"){
+	//Resets the zoom, map position and marker z-indexes back to their orignal position. Also closes all infoboxes currently open.
+	festivalMap.setZoom(festivalMapZoom);
+	festivalMap.setCenter(festivalMapCenter);
+	resetZindexes();
+	//This is a function I've created (below) that closes any info boxes that are open.
+	closeAllInfoboxes();
+}
+else if (buttonPressed === "small_events"){
+	alert("This button will do something useful in a later tutorial!");
+}
+else if (buttonPressed === "rainfall"){
+	alert("This button will do something useful in a later tutorial!");
+}
+}
+
+//Function that closes all info boxes.
+function closeAllInfoboxes(){
+	infoboxPorto.close();
+	//We've only created one pop up info box so far. But if we'd created more, they'd also need to be closed here.
+}
+
+</script>
+
+</head>
+
+<body>  
+     <!--Create the div to hold the map.-->
+    <div id="festival-map"></div>  
+
+</body>
+
+<body>
+
+<script src="list.js"></script>
+
+
+<div class="world">
+    <h3>Where should I go next?</h3>
+    <div id="button">
+        
+        <img id="world-img" onclick="World()" src="world.png" 
+        onmousemove="this.src='world_2.png'" onmouseout="this.src='world.png'">
+    </div>
+ 
+    <p id="pworld"></p>
+
+<style type="text/css">
+  
+  .world{
+  
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-family: 'Source Sans Pro';
+    background-color: #0a3542;
+    margin: 0;
+    padding-top: 1px;
+    padding-bottom: 2px;
+    height: 28%;
+    width: 100%; 
+    margin-left: 0;
+    margin-right: 0;
+    border-right-width: 0;
+    border-right-color: #ffffff;
+    border-right-style: solid;
+    border-left-width: 0;
+    border-left-color: #ffffff;
+    border-left-style: solid;
+
+  }
+
+</style>
+</div>
+
+</script>
+</body>
+</html>

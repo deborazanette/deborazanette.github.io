@@ -68,7 +68,10 @@
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #4b9aab}
+.dropdown-content a:hover {
+  background-color: #4b9aab;
+  color: #fff;
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
@@ -91,6 +94,8 @@ body {
 
 }
 
+/*
+
 a{
   color: inherit;
   text-decoration: none;
@@ -106,6 +111,8 @@ a:hover {
     background-color: #4b9aab;
     color: white;
 }
+
+*/
 
 #timeline {
   display: -webkit-box;
@@ -219,6 +226,22 @@ a:hover {
   line-height: 0;
 }
 
+.country a{
+  color: inherit;
+  text-decoration: none;
+  font-family: 'Pathway Gothic One',Helvetica Neue,Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 3rem;
+  font-weight: normal;
+  text-align: center;
+}
+
+.country a:hover{
+  background-color: #4b9aab;
+  color: white;
+}
+
 .picture {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
@@ -245,8 +268,17 @@ a{
 
 footer{
   text-align: center;
-  font-size: 16px;
   color: #1F8196;
   text-decoration: none;
- 
+  color: inherit;
+  text-decoration: none;
+  font-family: 'Pathway Gothic One',Helvetica Neue,Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+  color: #186778;
+  font-size: 3rem;
+  font-weight: normal;
+}
+
+a:hover{
+  color: #62a6b5
 }
