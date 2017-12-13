@@ -2,29 +2,33 @@
 <html>
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<title>ABROAD
+<title>ABROAD</title>
         <link href="https://fonts.googleapis.com/css?family=Pathway+Gothic+One|Source+Sans+Pro:400" rel="stylesheet">
-</title>
 
-<head>
+
   <div class="header">
     <h1 class="title">Citizen of the World, 23</h1>
     <p class="intro">Follow me around the world, <b>if you dare.</b></p>
-    <h2> Places I Call Home:</h2>
+    
     <div class="dropdown">
       <button class="dropbtn">+</button>
       <div class="dropdown-content">
         <a href="index.html">Home</a>
+        <a href="timeline/timeline.html">Timeline</a>
         <a href="#">What is Home?</a>
-        <a href="#">Experiences</a>
-        <a href="#">Contact</a>
+        <a href="carousel/carousel.html">Travel Tips</a>
+        <a href="contact/contact.html">Contact</a>
       </div>
     </div>
+
+     <h3>Debbie's Homes &darr;</h3>
    </div>
+
 </head>
 
 <style type="text/css">
-  .header{
+
+.header{
   background-color: #0a3542;
   padding-bottom: 1px;
   margin-bottom: 0;
@@ -39,7 +43,8 @@
   padding: 0;
   margin-bottom: 0;
   margin-left: 5px;
-  padding-top: 1em;
+  padding-top: 3px;
+  font-family: 'Source Sans Pro'!important;
 }
 
 .intro{
@@ -50,14 +55,16 @@
   padding-bottom: 1em;
   font-size: 18px;
   padding-top: 0;
-  
 }
 
-h2{
+h3{
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
   color: #fff;
-  padding-left: 10px;
-  padding-bottom: 0;
-  font-size: 25px;
+  padding-top: 2px;
+  font-size: 24px;
+  padding-top: 0;
 }
 
 /* DROPDOWN*/
@@ -75,6 +82,20 @@ h2{
     left: 16px;
     font-family: 'Source Sans Pro';
 }
+    
+html { 
+        height: 100%;
+    }
+      
+  body {
+      height: 100%; 
+      margin: 8px; 
+      padding: 0;
+      font-family: 'Source Sans Pro',Helvetica Neue,sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -126,36 +147,12 @@ h2{
 }
 
 
-
 </style>
 
 
 <!--Set up the CSS styles-->
 <style type="text/css">
 
-    html { 
-	      height: 100%;
-	  }
-      
-	  body {
-		  height: 100%; 
-		  margin: 8px; 
-		  padding: 0;
-		  
-	  }
-
-    h1{
-      text-align: left;
-      color: #fff;
-      font-size: 35px;
-      font-family: 'Source Sans Pro';
-      background-color: #0a3542;
-      margin: 0;
-      margin-bottom: 0;
-      justify-content: space-around;
-      
-
-    }
       
 	  /*Adapt the following styling depending on where you want to put your map. If you want a 'full screen' map, then set the width and height to 100 percent and remove the margins.*/
 	  #festival-map { 
@@ -172,8 +169,7 @@ h2{
 	  }
 	  
 	  .pop_up_box_text {
-	 	  font-family: Georgia, 'Times New Roman', Times, serif; 
-	 	  font-size: 16px; 
+	 	  font-family: 'Pathway Gothic One',Helvetica Neue,sans-serif;
 		  line-height: 22px; 
 	 	  color: #ffffff; 
 	 	  display: inline; 
@@ -1008,26 +1004,26 @@ function closeAllInfoboxes(){
 
 
 <div class="world">
-    <h3>Where should I go next?</h3>
+    <h5>Where should I go next?</h5>
     <div id="button">
         
-        <img id="world-img" onclick="World()" src="world.png" 
-        onmousemove="this.src='world_2.png'" onmouseout="this.src='world.png'">
+        <img id="world-img" onclick="World()" src="images/world.png" 
+        onmousemove="this.src='images/world_2.png'" onmouseout="this.src='world.png'">
     </div>
  
     <p id="pworld"></p>
 
 <style type="text/css">
   
+
   .world{
   
     text-align: center;
     color: #fff;
-    font-size: 18px;
-    font-family: 'Source Sans Pro';
+    font-size: 22px;
+    font-family: 'Pathway Gothic One';
     background-color: #0a3542;
     margin: 0;
-    padding-top: 1px;
     padding-bottom: 2px;
     height: 28%;
     width: 100%; 
@@ -1039,6 +1035,14 @@ function closeAllInfoboxes(){
     border-left-width: 0;
     border-left-color: #ffffff;
     border-left-style: solid;
+
+  }
+
+  h5{
+    font-size: 28px;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
 
   }
 
